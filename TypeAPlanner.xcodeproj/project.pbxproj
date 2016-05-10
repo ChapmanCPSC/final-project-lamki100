@@ -13,6 +13,10 @@
 		9E8F28781CDEE27300EB755B /* TypeAPlanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E8F28761CDEE27300EB755B /* TypeAPlanner.xcdatamodeld */; };
 		9E8F287A1CDEE27300EB755B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E8F28791CDEE27300EB755B /* Assets.xcassets */; };
 		9E8F287D1CDEE27300EB755B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E8F287B1CDEE27300EB755B /* LaunchScreen.storyboard */; };
+		9E8F28861CDFF33F00EB755B /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8F28851CDFF33F00EB755B /* EventListViewController.swift */; };
+		9E8F28881CDFF86800EB755B /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8F28871CDFF86800EB755B /* EventDetailViewController.swift */; };
+		9E8F288B1CDFFECE00EB755B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8F288A1CDFFECE00EB755B /* Event.swift */; };
+		9E8F288D1CDFFEF500EB755B /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8F288C1CDFFEF500EB755B /* Event+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		9E8F28791CDEE27300EB755B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E8F287C1CDEE27300EB755B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E8F287E1CDEE27300EB755B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E8F28851CDFF33F00EB755B /* EventListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
+		9E8F28871CDFF86800EB755B /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		9E8F288A1CDFFECE00EB755B /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		9E8F288C1CDFFEF500EB755B /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +64,9 @@
 		9E8F286E1CDEE27300EB755B /* TypeAPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				9E8F28891CDFFA4300EB755B /* Models */,
+				9E8F28841CDFF2EC00EB755B /* ViewControllers */,
 				9E8F286F1CDEE27300EB755B /* AppDelegate.swift */,
-				9E8F28711CDEE27300EB755B /* ViewController.swift */,
 				9E8F28731CDEE27300EB755B /* Main.storyboard */,
 				9E8F28791CDEE27300EB755B /* Assets.xcassets */,
 				9E8F287B1CDEE27300EB755B /* LaunchScreen.storyboard */,
@@ -65,6 +74,25 @@
 				9E8F28761CDEE27300EB755B /* TypeAPlanner.xcdatamodeld */,
 			);
 			path = TypeAPlanner;
+			sourceTree = "<group>";
+		};
+		9E8F28841CDFF2EC00EB755B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9E8F28711CDEE27300EB755B /* ViewController.swift */,
+				9E8F28851CDFF33F00EB755B /* EventListViewController.swift */,
+				9E8F28871CDFF86800EB755B /* EventDetailViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9E8F28891CDFFA4300EB755B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9E8F288A1CDFFECE00EB755B /* Event.swift */,
+				9E8F288C1CDFFEF500EB755B /* Event+CoreDataProperties.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +167,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E8F28721CDEE27300EB755B /* ViewController.swift in Sources */,
+				9E8F28881CDFF86800EB755B /* EventDetailViewController.swift in Sources */,
+				9E8F28861CDFF33F00EB755B /* EventListViewController.swift in Sources */,
+				9E8F288D1CDFFEF500EB755B /* Event+CoreDataProperties.swift in Sources */,
 				9E8F28781CDEE27300EB755B /* TypeAPlanner.xcdatamodeld in Sources */,
+				9E8F288B1CDFFECE00EB755B /* Event.swift in Sources */,
 				9E8F28701CDEE27300EB755B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
