@@ -24,7 +24,7 @@ class EventListViewController: UIViewController, UITableViewDataSource, UITableV
         self.eventTableView.delegate = self
         
         let notesFetch = NSFetchRequest(entityName: "Event")
-        let titleSort = NSSortDescriptor(key: "title", ascending: true)
+        let titleSort = NSSortDescriptor(key: "deadline", ascending: true)
         notesFetch.sortDescriptors = [titleSort]
         
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: notesFetch, managedObjectContext: AppDelegate.GetInstance().managedObjectContext, sectionNameKeyPath: nil, cacheName: "eventsCache")
