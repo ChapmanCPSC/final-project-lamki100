@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class EventListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate  {
+class EventListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
 
     @IBOutlet var eventTableView: UITableView!
     
@@ -44,7 +44,6 @@ class EventListViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let event = self.fetchedResultsController.fetchedObjects![indexPath.row] as! Event
         
         let cell = UITableViewCell()

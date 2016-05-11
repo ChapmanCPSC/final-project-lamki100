@@ -18,6 +18,9 @@ class EventDetailViewController: UITableViewController {
     @IBOutlet var locationTextField: UITextField!
     @IBOutlet var durationTextField: UITextField!
     
+    @IBOutlet var importanceScoreLabel: UILabel!
+    @IBOutlet var rigorScoreLabel: UILabel!
+    
     @IBOutlet var importanceSlider: UISlider!
     @IBOutlet var rigorSlider: UISlider!
     @IBOutlet var deadlineDatePicker: UIDatePicker!
@@ -27,18 +30,49 @@ class EventDetailViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        titleTextField.placeholder = "Title"
+        detailsTextField.placeholder = "Details"
+        locationTextField.placeholder = "Location"
+        durationTextField.placeholder = "Duration in hrs"
+        
+        let currentImportanceSliderValue = String(roundf(importanceSlider.value * 1))
+        importanceScoreLabel.text = currentImportanceSliderValue
+        
+        let currentRigorSliderValue = String(roundf(rigorSlider.value * 1))
+        rigorScoreLabel.text = currentRigorSliderValue
 
-        // Do any additional setup after loading the view.
-        //
-        //    if let note = editingNote
-        //    {
-        //        self.titleTextField.text = note.title
-        //        self.noteTextView.text = note.text
-        //    }
-        //    else
-        //    {
-        //        self.deleteButton.hidden = true
-        //    }
+         //Do any additional setup after loading the view.
+        
+        if let event = editingEvent
+        {
+            
+            titleTextField.text = event.title
+            detailsTextField.text = event.details
+            locationTextField.text = event.location
+            durationTextField.text = event.duration!.stringValue
+            
+            importanceSlider.value = (event.importance as? Float)!
+            rigorSlider.value = (event.rigor as? Float)!
+            importanceScoreLabel.text = event.importance!.stringValue
+            rigorScoreLabel.text = event.rigor!.stringValue
+            
+            deadlineDatePicker.date = event.deadline!
+        }
+        else
+        {
+            //self.deleteButton.hidden = true
+        }
+        
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EventDetailViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,42 +80,70 @@ class EventDetailViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func importanceSliderValueChanged(sender: AnyObject) {
+        let currentSliderValue = String(roundf(importanceSlider.value * 1))
+        importanceScoreLabel.text = currentSliderValue
+    }
+    
+    @IBAction func rigorSliderValueChanged(sender: AnyObject) {
+        let currentSliderValue = String(roundf(rigorSlider.value * 1))
+        rigorScoreLabel.text = currentSliderValue
+    }
+    
     @IBAction func backPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func composeEvent(sender: AnyObject) {
-        // if event is not nil ... then delete old event on calendar and then re make event
+        // setting values
+        let title = titleTextField.text
+        let details = detailsTextField.text
+        let location = locationTextField.text
+        let duration = Double(durationTextField.text!)
+        let curImportanceSlideValue = Double(importanceScoreLabel.text!)
+        let curRigorSlideValue = Double(rigorScoreLabel.text!)
+        let deadline = deadlineDatePicker.date
         
-        //    let appDelegate = AppDelegate.GetInstance()
-        //
-        //    if let currentNote = editingNote
-        //    {
-        //        currentNote.title = self.titleTextField.text
-        //        currentNote.text = self.noteTextView.text
-        //    }
-        //    else
-        //    {
-        //        let note = NSEntityDescription.insertNewObjectForEntityForName("Note", inManagedObjectContext: appDelegate.managedObjectContext) as! Note
-        //        note.title = self.titleTextField.text!
-        //        note.text = self.noteTextView.text!
-        //    }
-        //
-        //    appDelegate.saveContext()
-        //    self.navigationController!.popViewControllerAnimated(true)
+        // return if title, details, location, or duration are nil
+        if title == nil || details == nil || location == nil || duration == nil
+        {
+            // create the alert
+            let alert = UIAlertController(title: "Error", message: "Please fill out all sections.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+            return
+        }
+        
+        let appDelegate = AppDelegate.GetInstance()
+        
+        if let currentEvent = editingEvent
+        {
+            currentEvent.title = title!
+            currentEvent.details = details!
+            currentEvent.location = location!
+            currentEvent.duration = duration!
+            currentEvent.importance = curImportanceSlideValue
+            currentEvent.rigor = curRigorSlideValue
+            currentEvent.deadline = deadline
+            
+            // if event is not nil ... then delete old event on calendar and then re make event
+        }
+        else
+        {
+            let event = NSEntityDescription.insertNewObjectForEntityForName("Event", inManagedObjectContext: appDelegate.managedObjectContext) as! Event
+            event.title = title!
+            event.details = details!
+            event.location = location!
+            event.duration = duration!
+            event.importance = curImportanceSlideValue
+            event.rigor = curRigorSlideValue
+            event.deadline = deadline
+        }
+        
+        appDelegate.saveContext()
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
-
-    
-    //
-    //@IBAction func deleteNote(sender: AnyObject) {
-    //
-    //    let appDelegate = AppDelegate.GetInstance()
-    //    let dbContext = appDelegate.managedObjectContext
-    //    dbContext.deleteObject(self.editingNote!)
-    //
-    //    appDelegate.saveContext()
-    //    self.navigationController!.popViewControllerAnimated(true)
-    //}
     
     /*
     // MARK: - Navigation
@@ -94,13 +156,3 @@ class EventDetailViewController: UITableViewController {
     */
 
 }
-
-//@NSManaged var title: String?
-//@NSManaged var details: String?
-//@NSManaged var location: String?
-//@NSManaged var duration: NSNumber?
-//@NSManaged var importance: NSNumber?
-//@NSManaged var rigor: NSNumber?
-//@NSManaged var deadline: NSDate?
-
-
