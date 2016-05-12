@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import EventKit
 
 class EventDetailViewController: UITableViewController {
     
@@ -139,6 +140,31 @@ class EventDetailViewController: UITableViewController {
             event.importance = curImportanceSlideValue
             event.rigor = curRigorSlideValue
             event.deadline = deadline
+        }
+        
+        let eventStore = EKEventStore()
+        
+        // make sure calendar has been created
+        let calendar = AppDelegate.GetInstance().typeACalendar
+        
+        if calendar != nil
+        {
+            let event = EKEvent(eventStore: eventStore)
+            event.calendar = calendar!
+        
+            event.title = title!
+            event.notes = details
+            event.location = location
+            event.startDate = deadline
+            // 2 hours
+            event.endDate = deadline.dateByAddingTimeInterval(duration! * 60 * 60)
+            
+            // save event
+            do {
+                try eventStore.saveEvent(event, span: .ThisEvent)
+            } catch let specError as NSError {
+                print("A specific error occurred: \(specError)")
+            }
         }
         
         appDelegate.saveContext()

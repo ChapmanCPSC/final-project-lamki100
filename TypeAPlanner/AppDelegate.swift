@@ -7,19 +7,67 @@
 //
 
 import UIKit
+import EventKit
 import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var typeACalendar: EKCalendar?
     
     class func GetInstance() -> AppDelegate {
         return UIApplication.sharedApplication().delegate as! AppDelegate
     }
+    
+    func GetCalendar() -> EKCalendar? {
+        return typeACalendar;
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Create an Event Store instance
+        let eventStore = EKEventStore();
+        
+        // request access to calendar
+        eventStore.requestAccessToEntityType(EKEntityType.Event, completion: {
+            (accessGranted: Bool, error: NSError?) in
+            
+            if accessGranted == true {
+                dispatch_async(dispatch_get_main_queue(), {
+                })
+            } else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.typeACalendar = nil
+                })
+            }
+        })
+        
+        // make sure calendar has been created
+        let calendars = eventStore.calendarsForEntityType(EKEntityType.Event) 
+        
+        let filteredCalendars = calendars.filter {$0.title == "Type A"}
+        if !filteredCalendars.isEmpty {
+            self.typeACalendar = filteredCalendars[0]
+            return true
+        }
+        
+        // otherwise go through and create that calendar
+        let newCalendar = EKCalendar(forEntityType:EKEntityType.Event, eventStore:eventStore)
+        newCalendar.title = "Type A"
+        newCalendar.source = eventStore.defaultCalendarForNewEvents.source
+        
+        do {
+            // create calendar
+            try eventStore.saveCalendar(newCalendar, commit: true)
+            NSUserDefaults.standardUserDefaults().setObject(newCalendar.calendarIdentifier, forKey: "EventTrackerPrimaryCalendar")
+            // set that calendar
+            self.typeACalendar = newCalendar
+        } catch {
+            print("Error creating calendar")
+        }
+        
         return true
     }
 
