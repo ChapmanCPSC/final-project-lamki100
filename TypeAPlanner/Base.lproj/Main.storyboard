@@ -106,7 +106,7 @@
                             <tableViewSection headerTitle="Event Info" id="wUB-mD-CXH">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Si4-EZ-K5E" style="IBUITableViewCellStyleDefault" id="gk1-Hg-yOP">
-                                        <rect key="frame" x="0.0" y="114" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gk1-Hg-yOP" id="ctk-PF-yS6">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -128,7 +128,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="bSb-cW-qJz" style="IBUITableViewCellStyleDefault" id="3El-6a-HbY">
-                                        <rect key="frame" x="0.0" y="158" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="157.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3El-6a-HbY" id="gqA-L8-AO9">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -150,7 +150,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="nnj-tz-eVj" style="IBUITableViewCellStyleDefault" id="Llo-VN-G26">
-                                        <rect key="frame" x="0.0" y="202" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="201.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Llo-VN-G26" id="eSH-hi-1VW">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -172,7 +172,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="fw2-Rm-T9i" style="IBUITableViewCellStyleDefault" id="6ZB-pK-W6c">
-                                        <rect key="frame" x="0.0" y="246" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="245.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6ZB-pK-W6c" id="WpZ-pK-oLF">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -198,7 +198,7 @@
                             <tableViewSection headerTitle="Importance and Rigor" id="c7U-fo-Xnm">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="eII-xi-Ump">
-                                        <rect key="frame" x="0.0" y="340" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="339.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eII-xi-Ump" id="7Nc-K9-Cp6">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -241,7 +241,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fCF-vb-3B8">
-                                        <rect key="frame" x="0.0" y="384" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="383.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fCF-vb-3B8" id="TuZ-UB-jhQ">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -285,10 +285,36 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Add To Calendar" id="mVi-Vi-AFh">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="51" id="Axg-Zk-7lv">
+                                        <rect key="frame" x="0.0" y="477.5" width="600" height="51"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Axg-Zk-7lv" id="8SQ-ZL-s1j">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Schedule on Calendar: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsw-D9-I0R">
+                                                    <rect key="frame" x="8" y="14" width="193" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m9j-WO-LCk">
+                                                    <rect key="frame" x="209" y="8" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="switchChanged:" destination="sBU-oK-llY" eventType="valueChanged" id="aGB-NG-bxT"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Deadline" id="Ky7-gR-2Is">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="211" id="hEu-UM-7op">
-                                        <rect key="frame" x="0.0" y="478" width="600" height="211"/>
+                                        <rect key="frame" x="0.0" y="578.5" width="600" height="211"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hEu-UM-7op" id="LKH-0x-s9V">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="211"/>
@@ -329,6 +355,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="calendarSwitch" destination="m9j-WO-LCk" id="jLW-XQ-m8n"/>
                         <outlet property="deadlineDatePicker" destination="EnE-U4-Ink" id="ifG-Ve-8rq"/>
                         <outlet property="detailsTextField" destination="ls4-3e-mHM" id="b3L-cE-EPj"/>
                         <outlet property="durationTextField" destination="KEi-73-ASJ" id="fau-gQ-MeZ"/>

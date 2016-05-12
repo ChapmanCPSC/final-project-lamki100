@@ -21,9 +21,10 @@ class EventDetailViewController: UITableViewController {
     
     @IBOutlet var importanceScoreLabel: UILabel!
     @IBOutlet var rigorScoreLabel: UILabel!
-    
     @IBOutlet var importanceSlider: UISlider!
     @IBOutlet var rigorSlider: UISlider!
+    
+    @IBOutlet var calendarSwitch: UISwitch!
     @IBOutlet var deadlineDatePicker: UIDatePicker!
     
     @IBOutlet var detailEventTableView: UITableView!
@@ -42,6 +43,10 @@ class EventDetailViewController: UITableViewController {
         
         let currentRigorSliderValue = String(roundf(rigorSlider.value * 1))
         rigorScoreLabel.text = currentRigorSliderValue
+        
+        // set the switch to off if it hasnt been set to on 
+        // TODO
+        calendarSwitch.on = false
 
          //Do any additional setup after loading the view.
         
@@ -89,6 +94,32 @@ class EventDetailViewController: UITableViewController {
     @IBAction func rigorSliderValueChanged(sender: AnyObject) {
         let currentSliderValue = String(roundf(rigorSlider.value * 1))
         rigorScoreLabel.text = currentSliderValue
+    }
+    
+    @IBAction func switchChanged(sender: AnyObject) {
+        // request access to calendar
+        let eventStore = EKEventStore();
+        
+        eventStore.requestAccessToEntityType(EKEntityType.Event, completion: {
+            (accessGranted: Bool, error: NSError?) in
+            
+            if accessGranted == true {
+                dispatch_async(dispatch_get_main_queue(), {
+                    // good to go!
+                })
+            } else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    // throw alert saying you must accept to have this feature
+                    // create the alert
+                    let alert = UIAlertController(title: "Error", message: "You must approve access to the Calendar to have this feature.", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
+                    // then turn switch off
+                    self.calendarSwitch.on = false
+                })
+            }
+        })
     }
     
     @IBAction func backPressed(sender: AnyObject) {
@@ -142,28 +173,31 @@ class EventDetailViewController: UITableViewController {
             event.deadline = deadline
         }
         
-        let eventStore = EKEventStore()
-        
-        // make sure calendar has been created
-        let calendar = AppDelegate.GetInstance().typeACalendar
-        
-        if calendar != nil
+        if calendarSwitch.on
         {
-            let event = EKEvent(eventStore: eventStore)
-            event.calendar = calendar!
+            // make sure calendar has been created
+            let calendar = AppDelegate.GetInstance().typeACalendar
         
-            event.title = title!
-            event.notes = details
-            event.location = location
-            event.startDate = deadline
-            // 2 hours
-            event.endDate = deadline.dateByAddingTimeInterval(duration! * 60 * 60)
+            if calendar != nil
+            {
+                let eventStore = EKEventStore()
             
-            // save event
-            do {
-                try eventStore.saveEvent(event, span: .ThisEvent)
-            } catch let specError as NSError {
-                print("A specific error occurred: \(specError)")
+                let event = EKEvent(eventStore: eventStore)
+                event.calendar = calendar!
+        
+                event.title = title!
+                event.notes = details
+                event.location = location
+                event.startDate = deadline
+                // 2 hours
+                event.endDate = deadline.dateByAddingTimeInterval(duration! * 60 * 60)
+            
+                // save event
+                do {
+                    try eventStore.saveEvent(event, span: .ThisEvent)
+                } catch let specError as NSError {
+                    print("A specific error occurred: \(specError)")
+                }
             }
         }
         
