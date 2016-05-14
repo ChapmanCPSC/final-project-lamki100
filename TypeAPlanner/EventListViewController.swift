@@ -49,6 +49,9 @@ class EventListViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = UITableViewCell()
         cell.textLabel!.text = event.title!
         
+        // set background color of the cells
+        cell.contentView.backgroundColor = UIColor(red:0.93, green:0.83, blue:0.70, alpha:1.0)
+        
         return cell
     }
     

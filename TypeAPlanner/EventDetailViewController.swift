@@ -100,12 +100,15 @@ class EventDetailViewController: UITableViewController {
         // request access to calendar
         let eventStore = EKEventStore();
         
+        eventStore
+        
         eventStore.requestAccessToEntityType(EKEntityType.Event, completion: {
             (accessGranted: Bool, error: NSError?) in
             
             if accessGranted == true {
                 dispatch_async(dispatch_get_main_queue(), {
                     // good to go!
+                    self.calendarSwitch.on = true
                 })
             } else {
                 dispatch_async(dispatch_get_main_queue(), {
@@ -127,6 +130,12 @@ class EventDetailViewController: UITableViewController {
     }
     
     @IBAction func composeEvent(sender: AnyObject) {
+        
+        //let userDefaults = NSUserDefaults.standardUserDefaults()
+        //let morning = userDefaults.boolForKey("morning_person")
+        
+        var edited = false
+        
         // setting values
         let title = titleTextField.text
         let details = detailsTextField.text
@@ -147,6 +156,7 @@ class EventDetailViewController: UITableViewController {
             return
         }
         
+        let startTime = setStartTime(before: deadline, withRigor: curRigorSlideValue!, withImportance: curImportanceSlideValue!)
         let appDelegate = AppDelegate.GetInstance()
         
         if let currentEvent = editingEvent
@@ -159,7 +169,7 @@ class EventDetailViewController: UITableViewController {
             currentEvent.rigor = curRigorSlideValue
             currentEvent.deadline = deadline
             
-            // if event is not nil ... then delete old event on calendar and then re make event
+            edited = true
         }
         else
         {
@@ -173,36 +183,47 @@ class EventDetailViewController: UITableViewController {
             event.deadline = deadline
         }
         
-        if calendarSwitch.on
+        // if they want it on the calendar and its not an edited event then add it
+        if calendarSwitch.on && !edited
         {
-            // make sure calendar has been created
-            let calendar = AppDelegate.GetInstance().typeACalendar
-        
-            if calendar != nil
-            {
-                let eventStore = EKEventStore()
-            
-                let event = EKEvent(eventStore: eventStore)
-                event.calendar = calendar!
-        
-                event.title = title!
-                event.notes = details
-                event.location = location
-                event.startDate = deadline
-                // 2 hours
-                event.endDate = deadline.dateByAddingTimeInterval(duration! * 60 * 60)
-            
-                // save event
-                do {
-                    try eventStore.saveEvent(event, span: .ThisEvent)
-                } catch let specError as NSError {
-                    print("A specific error occurred: \(specError)")
-                }
-            }
+            makeCalendarEvent(title, details, at: location, withLength: duration, withStartTime: startTime)
         }
         
         appDelegate.saveContext()
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func makeCalendarEvent(title: String?, _ details: String?, at location: String?, withLength duration: Double?, withStartTime startTime: NSDate)
+    {
+        // make sure calendar has been created
+        let calendar = AppDelegate.GetInstance().typeACalendar
+        
+        if calendar != nil
+        {
+            let eventStore = EKEventStore()
+            
+            let event = EKEvent(eventStore: eventStore)
+            event.calendar = calendar!
+            
+            event.title = title!
+            event.notes = details
+            event.location = location
+            event.startDate = startTime
+            // 2 hours
+            event.endDate = startTime.dateByAddingTimeInterval(duration! * 60 * 60)
+            
+            // save event
+            do {
+                try eventStore.saveEvent(event, span: .ThisEvent)
+            } catch let specError as NSError {
+                print("A specific error occurred: \(specError)")
+            }
+        }
+    }
+    
+    func setStartTime(before deadline: NSDate, withRigor rigor: Double, withImportance importance: Double) -> NSDate
+    {
+        return NSDate()
     }
     
     /*

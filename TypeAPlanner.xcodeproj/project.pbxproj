@@ -17,6 +17,8 @@
 		9E8F28881CDFF86800EB755B /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8F28871CDFF86800EB755B /* EventDetailViewController.swift */; };
 		9E8F288B1CDFFECE00EB755B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8F288A1CDFFECE00EB755B /* Event.swift */; };
 		9E8F288D1CDFFEF500EB755B /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8F288C1CDFFEF500EB755B /* Event+CoreDataProperties.swift */; };
+		9E8F28931CE666C800EB755B /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8F28921CE666C800EB755B /* MenuButton.swift */; };
+		9E8F28951CE6B45100EB755B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8F28941CE6B45100EB755B /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		9E8F28871CDFF86800EB755B /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		9E8F288A1CDFFECE00EB755B /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		9E8F288C1CDFFEF500EB755B /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9E8F28921CE666C800EB755B /* MenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
+		9E8F28941CE6B45100EB755B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,7 @@
 				9E8F287B1CDEE27300EB755B /* LaunchScreen.storyboard */,
 				9E8F287E1CDEE27300EB755B /* Info.plist */,
 				9E8F28761CDEE27300EB755B /* TypeAPlanner.xcdatamodeld */,
+				9E8F28921CE666C800EB755B /* MenuButton.swift */,
 			);
 			path = TypeAPlanner;
 			sourceTree = "<group>";
@@ -82,6 +87,7 @@
 				9E8F28711CDEE27300EB755B /* ViewController.swift */,
 				9E8F28851CDFF33F00EB755B /* EventListViewController.swift */,
 				9E8F28871CDFF86800EB755B /* EventDetailViewController.swift */,
+				9E8F28941CE6B45100EB755B /* SettingsViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -170,9 +176,11 @@
 				9E8F28881CDFF86800EB755B /* EventDetailViewController.swift in Sources */,
 				9E8F28861CDFF33F00EB755B /* EventListViewController.swift in Sources */,
 				9E8F288D1CDFFEF500EB755B /* Event+CoreDataProperties.swift in Sources */,
+				9E8F28931CE666C800EB755B /* MenuButton.swift in Sources */,
 				9E8F28781CDEE27300EB755B /* TypeAPlanner.xcdatamodeld in Sources */,
 				9E8F288B1CDFFECE00EB755B /* Event.swift in Sources */,
 				9E8F28701CDEE27300EB755B /* AppDelegate.swift in Sources */,
+				9E8F28951CE6B45100EB755B /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +332,7 @@
 				9E8F28831CDEE27300EB755B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
