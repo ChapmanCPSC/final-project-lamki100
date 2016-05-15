@@ -25,10 +25,9 @@ class EventDetailViewController: UITableViewController {
     @IBOutlet var rigorSlider: UISlider!
     
     @IBOutlet var calendarSwitch: UISwitch!
-    @IBOutlet var deadlineDatePicker: UIDatePicker!
+    @IBOutlet var startTimeDatePicker: UIDatePicker!
     
     @IBOutlet var detailEventTableView: UITableView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +43,7 @@ class EventDetailViewController: UITableViewController {
         let currentRigorSliderValue = String(roundf(rigorSlider.value * 1))
         rigorScoreLabel.text = currentRigorSliderValue
         
-        // set the switch to off if it hasnt been set to on 
-        // TODO
+        // set the switch to off if it hasnt been set to on
         calendarSwitch.on = false
 
          //Do any additional setup after loading the view.
@@ -63,7 +61,7 @@ class EventDetailViewController: UITableViewController {
             importanceScoreLabel.text = event.importance!.stringValue
             rigorScoreLabel.text = event.rigor!.stringValue
             
-            deadlineDatePicker.date = event.deadline!
+            startTimeDatePicker.date = event.deadline!
         }
         else
         {
@@ -89,11 +87,29 @@ class EventDetailViewController: UITableViewController {
     @IBAction func importanceSliderValueChanged(sender: AnyObject) {
         let currentSliderValue = String(roundf(importanceSlider.value * 1))
         importanceScoreLabel.text = currentSliderValue
+        
+        // set the levels
+        let rigorLevel = Double(rigorScoreLabel.text!)
+        let importanceLevel = Double(importanceScoreLabel.text!)
+        
+        // change start time
+        let startTime = setStartTime(startingAt: startTimeDatePicker.date, withRigor: rigorLevel!, withImportance: importanceLevel!)
+        
+        startTimeDatePicker.date = startTime
     }
     
     @IBAction func rigorSliderValueChanged(sender: AnyObject) {
         let currentSliderValue = String(roundf(rigorSlider.value * 1))
         rigorScoreLabel.text = currentSliderValue
+        
+        // set the levels
+        let rigorLevel = Double(rigorScoreLabel.text!)
+        let importanceLevel = Double(importanceScoreLabel.text!)
+        
+        // change start time
+        let startTime = setStartTime(startingAt: startTimeDatePicker.date, withRigor: rigorLevel!, withImportance: importanceLevel!)
+        
+        startTimeDatePicker.date = startTime
     }
     
     @IBAction func switchChanged(sender: AnyObject) {
@@ -130,10 +146,6 @@ class EventDetailViewController: UITableViewController {
     }
     
     @IBAction func composeEvent(sender: AnyObject) {
-        
-        //let userDefaults = NSUserDefaults.standardUserDefaults()
-        //let morning = userDefaults.boolForKey("morning_person")
-        
         var edited = false
         
         // setting values
@@ -143,7 +155,7 @@ class EventDetailViewController: UITableViewController {
         let duration = Double(durationTextField.text!)
         let curImportanceSlideValue = Double(importanceScoreLabel.text!)
         let curRigorSlideValue = Double(rigorScoreLabel.text!)
-        let deadline = deadlineDatePicker.date
+        let startTime = startTimeDatePicker.date
         
         // return if title, details, location, or duration are nil
         if title == nil || details == nil || location == nil || duration == nil
@@ -156,7 +168,6 @@ class EventDetailViewController: UITableViewController {
             return
         }
         
-        let startTime = setStartTime(before: deadline, withRigor: curRigorSlideValue!, withImportance: curImportanceSlideValue!)
         let appDelegate = AppDelegate.GetInstance()
         
         if let currentEvent = editingEvent
@@ -167,7 +178,7 @@ class EventDetailViewController: UITableViewController {
             currentEvent.duration = duration!
             currentEvent.importance = curImportanceSlideValue
             currentEvent.rigor = curRigorSlideValue
-            currentEvent.deadline = deadline
+            currentEvent.deadline = startTime
             
             edited = true
         }
@@ -180,7 +191,7 @@ class EventDetailViewController: UITableViewController {
             event.duration = duration!
             event.importance = curImportanceSlideValue
             event.rigor = curRigorSlideValue
-            event.deadline = deadline
+            event.deadline = startTime
         }
         
         // if they want it on the calendar and its not an edited event then add it
@@ -221,9 +232,59 @@ class EventDetailViewController: UITableViewController {
         }
     }
     
-    func setStartTime(before deadline: NSDate, withRigor rigor: Double, withImportance importance: Double) -> NSDate
+    func setStartTime(startingAt startTime: NSDate, withRigor rigor: Double, withImportance importance: Double) -> NSDate
     {
-        return NSDate()
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let morning = userDefaults.boolForKey("morning_person")
+        
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day , .Month , .Year], fromDate: startTime)
+        
+        if (morning)
+        {
+            if rigor >= 1.0 && rigor < 4.0
+            {
+                // 1pm
+                components.hour = 13
+                components.minute = 00
+            }
+            else if rigor >= 4.0 && rigor < 7.0
+            {
+                // 11pm
+                components.hour = 11
+                components.minute = 00
+            }
+            else if rigor >= 7.0 && rigor < 10.0
+            {
+                // 9am
+                components.hour = 09
+                components.minute = 00
+            }
+        }
+        else
+        {
+            if rigor >= 1.0 && rigor < 4.0
+            {
+                // 1pm
+                components.hour = 13
+                components.minute = 00
+            }
+            else if rigor >= 4.0 && rigor < 7.0
+            {
+                // 5pm
+                components.hour = 17
+                components.minute = 00
+            }
+            else if rigor >= 7.0 && rigor < 10.0
+            {
+                // 8pm
+                components.hour = 20
+                components.minute = 00
+            }
+        
+        }
+        let newDate = calendar.dateFromComponents(components)
+        return newDate!
     }
     
     /*

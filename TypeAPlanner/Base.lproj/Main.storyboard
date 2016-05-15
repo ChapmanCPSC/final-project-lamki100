@@ -420,7 +420,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Deadline" id="Ky7-gR-2Is">
+                            <tableViewSection headerTitle="Start Time" id="Ky7-gR-2Is">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="211" id="hEu-UM-7op">
                                         <rect key="frame" x="0.0" y="578.5" width="600" height="211"/>
@@ -465,7 +465,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="calendarSwitch" destination="m9j-WO-LCk" id="jLW-XQ-m8n"/>
-                        <outlet property="deadlineDatePicker" destination="EnE-U4-Ink" id="ifG-Ve-8rq"/>
                         <outlet property="detailsTextField" destination="ls4-3e-mHM" id="b3L-cE-EPj"/>
                         <outlet property="durationTextField" destination="KEi-73-ASJ" id="fau-gQ-MeZ"/>
                         <outlet property="importanceScoreLabel" destination="ee2-I2-Gb9" id="wwX-US-ojw"/>
@@ -473,6 +472,7 @@
                         <outlet property="locationTextField" destination="khe-st-4Hy" id="CPk-hU-rft"/>
                         <outlet property="rigorScoreLabel" destination="pWU-iR-ul5" id="ZEL-P4-H5H"/>
                         <outlet property="rigorSlider" destination="DZ2-9n-ibi" id="dnR-q8-Hy7"/>
+                        <outlet property="startTimeDatePicker" destination="EnE-U4-Ink" id="f4z-hB-3ya"/>
                         <outlet property="titleTextField" destination="u4n-hb-FTK" id="pVC-1S-R8W"/>
                     </connections>
                 </tableViewController>

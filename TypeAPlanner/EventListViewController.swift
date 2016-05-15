@@ -29,7 +29,12 @@ class EventListViewController: UIViewController, UITableViewDataSource, UITableV
         
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: notesFetch, managedObjectContext: AppDelegate.GetInstance().managedObjectContext, sectionNameKeyPath: nil, cacheName: "eventsCache")
         
-        try! self.fetchedResultsController.performFetch()
+        do {
+            try self.fetchedResultsController.performFetch()
+        }
+        catch {
+            print("Error loading data")
+        }
         
         self.fetchedResultsController.delegate = self
     }
