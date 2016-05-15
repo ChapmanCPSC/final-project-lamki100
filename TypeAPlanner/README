@@ -1,0 +1,8 @@
+Katie Lamkin
+
+List of things app does:
+-Lets user set whether they are a morning or a night person in settings (gets saved in user defaults)
+-Able to add events to a list view as well as a calendar (if the user gives them access to a calendar)
+-Able to send notifications through this app when each start time for each event occurs (if the user gives the app access to the phones notifications)
+-When adding an event, if the rigor and importance level changes, then the start time will adjust (but the user can change it to whatever they want if they like)
+-If event is updated, it will save updates and send new notifications and calendar events

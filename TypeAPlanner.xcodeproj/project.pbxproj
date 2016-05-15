@@ -19,6 +19,7 @@
 		9E8F28951CE6B45100EB755B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8F28941CE6B45100EB755B /* SettingsViewController.swift */; };
 		9E8F289C1CE8DD5700EB755B /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8F289A1CE8DD5700EB755B /* Event+CoreDataProperties.swift */; };
 		9E8F289D1CE8DD5700EB755B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8F289B1CE8DD5700EB755B /* Event.swift */; };
+		9E8F289F1CE8F69800EB755B /* README in Resources */ = {isa = PBXBuildFile; fileRef = 9E8F289E1CE8F69800EB755B /* README */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		9E8F28941CE6B45100EB755B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9E8F289A1CE8DD5700EB755B /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9E8F289B1CE8DD5700EB755B /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		9E8F289E1CE8F69800EB755B /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				9E8F287E1CDEE27300EB755B /* Info.plist */,
 				9E8F28761CDEE27300EB755B /* TypeAPlanner.xcdatamodeld */,
 				9E8F28921CE666C800EB755B /* MenuButton.swift */,
+				9E8F289E1CE8F69800EB755B /* README */,
 			);
 			path = TypeAPlanner;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E8F289F1CE8F69800EB755B /* README in Resources */,
 				9E8F287D1CDEE27300EB755B /* LaunchScreen.storyboard in Resources */,
 				9E8F287A1CDEE27300EB755B /* Assets.xcassets in Resources */,
 				9E8F28751CDEE27300EB755B /* Main.storyboard in Resources */,
