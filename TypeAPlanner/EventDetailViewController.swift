@@ -200,7 +200,13 @@ class EventDetailViewController: UITableViewController {
             makeCalendarEvent(title, details, at: location, withLength: duration, withStartTime: startTime)
         }
         
+        // set up notification on phone for this event
+        setAppNotification(atThisTime: startTime, withThisTitle: title!)
+        
+        // save the data in core data
         appDelegate.saveContext()
+        
+        // dismiss view
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -230,6 +236,18 @@ class EventDetailViewController: UITableViewController {
                 print("A specific error occurred: \(specError)")
             }
         }
+    }
+    
+    func setAppNotification(atThisTime fireTime: NSDate, withThisTitle title: String) {
+        let notification: UILocalNotification = UILocalNotification()
+        
+        notification.category = "Type A Planner Reminder"
+        notification.alertAction = "Type A Planned Event"
+        notification.alertBody = "It's time for \(title)!!"
+        
+        notification.fireDate = fireTime
+        notification.timeZone = NSTimeZone.defaultTimeZone()
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
     func setStartTime(startingAt startTime: NSDate, withRigor rigor: Double, withImportance importance: Double) -> NSDate
