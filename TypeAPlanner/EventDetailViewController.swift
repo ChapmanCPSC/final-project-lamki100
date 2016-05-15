@@ -242,49 +242,106 @@ class EventDetailViewController: UITableViewController {
         
         if (morning)
         {
-            if rigor >= 1.0 && rigor < 4.0
-            {
-                // 1pm
-                components.hour = 13
-                components.minute = 00
-            }
-            else if rigor >= 4.0 && rigor < 7.0
-            {
-                // 11pm
-                components.hour = 11
-                components.minute = 00
-            }
-            else if rigor >= 7.0 && rigor < 10.0
-            {
-                // 9am
-                components.hour = 09
-                components.minute = 00
-            }
+            components.hour = getMorningHour(withRigor: rigor, withImportance: importance)
+            components.minute = 00
         }
         else
         {
-            if rigor >= 1.0 && rigor < 4.0
-            {
-                // 1pm
-                components.hour = 13
-                components.minute = 00
-            }
-            else if rigor >= 4.0 && rigor < 7.0
-            {
-                // 5pm
-                components.hour = 17
-                components.minute = 00
-            }
-            else if rigor >= 7.0 && rigor < 10.0
-            {
-                // 8pm
-                components.hour = 20
-                components.minute = 00
-            }
-        
+            components.hour = getNightHour(withRigor: rigor, withImportance: importance)
+            components.minute = 00
         }
         let newDate = calendar.dateFromComponents(components)
         return newDate!
+    }
+    
+    func getMorningHour(withRigor rigor: Double, withImportance importance: Double) -> Int {
+        if rigor >= 1.0 && rigor < 4.0 {
+            if importance >= 4.0 && importance < 7.0 {
+                // 11am
+                return 11
+            }
+            else if importance >= 7.0 && importance <= 10.0 {
+                // 10am
+                return 10
+            }
+            else {
+                // 1pm
+                return 13
+            }
+        }
+        else if rigor >= 4.0 && rigor < 7.0 {
+            if importance >= 1.0 && importance < 4.0 {
+                // 2pm
+                return 14
+            }
+            else if importance >= 7.0 && importance <= 10.0 {
+                // 10am
+                return 10
+            }
+            else {
+                // 11am
+                return 11
+            }
+        }
+        else {
+            if importance >= 1.0 && importance < 4.0 {
+                // 8am
+                return 14
+            }
+            else if importance >= 4.0 && importance < 7.0 {
+                // 8am
+                return 08
+            }
+            else {
+                // 9am
+                return 09
+            }
+        }
+    }
+    
+    func getNightHour(withRigor rigor: Double, withImportance importance: Double) -> Int {
+        if rigor >= 1.0 && rigor < 4.0 {
+            if importance >= 4.0 && importance < 7.0 {
+                // 4pm
+                return 16
+            }
+            else if importance >= 7.0 && importance <= 10.0 {
+                // 7pm
+                return 19
+            }
+            else {
+                // 1pm
+                return 13
+            }
+        }
+        else if rigor >= 4.0 && rigor < 7.0 {
+            if importance >= 1.0 && importance < 4.0 {
+                // 5pm
+                return 17
+            }
+            else if importance >= 7.0 && importance <= 10.0 {
+                // 9pm
+                return 21
+            }
+            else {
+                // 7pm
+                return 19
+            }
+        }
+        else {
+            if importance >= 1.0 && importance < 4.0 {
+                // 3pm
+                return 15
+            }
+            else if importance >= 4.0 && importance < 7.0 {
+                // 7pm
+                return 19
+            }
+            else {
+                // 9pm
+                return 21
+            }
+        }
     }
     
     /*
