@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         
         // make sure calendar has been created
-        let calendars = eventStore.calendarsForEntityType(EKEntityType.Event) 
+        let calendars = eventStore.calendarsForEntityType(EKEntityType.Event)
         
         let filteredCalendars = calendars.filter {$0.title == "Type A"}
         if !filteredCalendars.isEmpty {
@@ -69,7 +69,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // set that calendar
             self.typeACalendar = newCalendar
         } catch {
-            print("Error creating calendar")
+            print("Error creating calendar: \(error)")
+            
         }
         
         return true
